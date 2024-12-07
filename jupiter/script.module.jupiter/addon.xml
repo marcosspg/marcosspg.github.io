@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.module.jupiter" name="Jupiter" version="1.6" provider-name="anonymous">
+    <requires>
+        <import addon="script.module.six" />
+        <import addon="script.module.requests"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <description>Jupiter</description>
+        <disclaimer>En Jupiter no se almacena ningún enlace. Se obtienen de urls externas de las que no somos propietarios</disclaimer>
+        <platform>all</platform>
+        <assets>
+              <icon>icon.jpg</icon>
+              <fanart>fanart.jpg</fanart>
+        </assets>
+        <news>
+            
+        </news>
+        <forum></forum>
+    </extension>
+</addon>
