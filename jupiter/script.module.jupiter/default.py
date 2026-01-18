@@ -29,7 +29,7 @@ import requests
 
 error_flag = False
 
-LN_endpoint = "https://ipfs.io/ipns/elcano.top";
+LN_endpoint = "https://ipfs.io/ipns/k51qzi5uqu5di462t7j4vu4akwfhvtjhy88qbupktvoacqfqe9uforjvhyi4wr/hashes.json";
 
 
 class OSD(object):
@@ -756,11 +756,13 @@ def run(item):
         try:
             with requests.Session() as s:
                 response = s.get(LN_endpoint).text
-                links = json.loads(response.split("linksData =")[1].split(";")[0])
-                for link in links["links"]:
-                    url = link["url"]
+                links = json.loads(response)
+                hashes = links.get("hashes") or []
+                hashes = sorted(hashes, key=lambda x: (x.get("title") or "").lower())
+                for link in hashes:
+                    url = link["hash"]
                     if url != None and str(url).strip() != "acestream://":
-                        itemlist.append(Item(label= link["name"], action='play', id= str(link["url"]).replace("acestream://", "")))
+                        itemlist.append(Item(label= link["title"], action='play', id= str(link["hash"]).replace("acestream://", "")))
         except Exception as e:   
             logger(e)
             None
